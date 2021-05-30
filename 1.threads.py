@@ -4,7 +4,15 @@ import logging
 import threading
 
 # Configuracion inicial del loggin
-logging.basicConfig(level=logging.INFO)
+# filename='./files/logs.txt' // Alamcenar los mensajes
+# Ejemplos con varios parametros
+# %(levelname)s: archivo: %(filename)s mensaje: [%(message)s] fecha_ejecucion: %(asctime)s',
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(levelname)s: | mensaje: [%(message)s] | thread: [%(thread)s] | proceso: [%(processName)s] | fecha_ejecucion: [%(asctime)s',
+    datefmt='%d/%m/%y - %H:%M:%S',
+    # filename='./files/logs.txt'
+)
 # Especificando al logger en donde se esta ejecutando __name__ => filename.py
 logger = logging.getLogger(__name__)
 
