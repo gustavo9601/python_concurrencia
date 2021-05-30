@@ -1,15 +1,16 @@
 import requests
 import logging
+import time
 # Modulo para manera los hilos
 import threading
 
 # Configuracion inicial del loggin
-# filename='./files/logs.txt' // Alamcenar los mensajes
+# filename='./files/logs.txt' // Almacenar los mensajes
 # Ejemplos con varios parametros
 # %(levelname)s: archivo: %(filename)s mensaje: [%(message)s] fecha_ejecucion: %(asctime)s',
 logging.basicConfig(
     level=logging.INFO,
-    format='%(levelname)s: | mensaje: [%(message)s] | thread: [%(thread)s] | proceso: [%(processName)s] | fecha_ejecucion: [%(asctime)s',
+    format='%(levelname)s: | mensaje: [%(message)s] | thread: [%(thread)s] | proceso: [%(processName)s] | fecha_ejecucion: [%(asctime)s]',
     datefmt='%d/%m/%y - %H:%M:%S',
     # filename='./files/logs.txt'
 )
@@ -29,6 +30,11 @@ def get_name(type):
     else:
         logger.error('Error en el request')
 
+def task_sleep(seconds):
+    logging.info('Inicio la tarea dormilona')
+    # Indicando la cantidad de segundos a detener la ejecucion
+    time.sleep(seconds)
+    logging.info('Finalizo la tarea dormilona')
 
 if __name__ == '__main__':
 
@@ -44,5 +50,10 @@ if __name__ == '__main__':
 
     # Secuencial
     logger.info('Forma secuencial')
-    for _ in range(0, 20):
+    for _ in range(0, 3):
         get_name(type='Forma secuencial')
+
+    # Tarea con sleep
+    logger.info('Tarea dormilona')
+    thread2 = threading.Thread(target=task_sleep, kwargs={'seconds': 3})
+    thread2.start()
