@@ -44,7 +44,8 @@ if __name__ == '__main__':
         # target= // Recibe entidad o funcion a ejecutar de forma concurrente
         # args= // Recibe una lista con los parametros que se necesitaen en el target
         # kwargs= // Recibe en un diccianiro los parametros que necesitan en el target
-        thread = threading.Thread(target=get_name, kwargs={'type': 'Concurrente'})
+        # name= // Se le pasa un nombre a la ejecucion del thread
+        thread = threading.Thread(target=get_name, kwargs={'type': 'Concurrente'}, name='Tread-Concurrente')
         # Indicamos a python que las instruccion se ejecuten justo en este momento
         thread.start()
 
