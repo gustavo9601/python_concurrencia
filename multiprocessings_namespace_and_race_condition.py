@@ -39,7 +39,6 @@ if __name__ == '__main__':
     namespace = manager.Namespace()
     # Una vez definido el namespace, a modo de diccionario u objeto se pueden añadir nuevas variables
     namespace.balance = 0
-
     # El lock permitira evitar el race condition cuando se este modificando una misma variable compartida
     lock = manager.Lock()
 
